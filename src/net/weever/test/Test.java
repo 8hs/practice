@@ -1,6 +1,7 @@
 package net.weever.test;
 
 import net.weever.Solution;
+import net.weever.domain.ListNode;
 
 public class Test {
 
@@ -17,7 +18,6 @@ public class Test {
 		for(int i=0;i<result.length;i++){
 			System.out.println(result[i]);
 		}
-
 	}
 
 }
