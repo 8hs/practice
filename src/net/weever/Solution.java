@@ -17,4 +17,23 @@ public class Solution {
 		 }
 		 return result;
 	 }
+	 
+	 public int[] PlusOne(int[] digits){
+		 int carry =1,sum=0;
+		 int[] result = new int[digits.length];
+		 for(int i = digits.length -1; i>=0; i--){
+			 sum = carry+digits[i];
+			 carry = sum/10;
+			 result[i] = sum%10;
+		 }
+		 if(carry == 1){
+			 int[] plusone = new int[digits.length+1];
+			 plusone[0] = carry;
+			 for(int i=1;i<plusone.length;i++)
+				 plusone[i] = result[i-1];
+			 return plusone;
+		 }else{
+			 return result;
+		 }
+	 }
 }
