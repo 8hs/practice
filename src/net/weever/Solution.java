@@ -6,7 +6,16 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Stack;
 
+import net.weever.domain.ListNode;
+
 public class Solution {
+	/*
+	Given an array of integers, find two numbers such that they add up to a specific target number.
+	The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.
+	You may assume that each input would have exactly one solution.
+	Input: numbers={2, 7, 11, 15}, target=9
+	Output: index1=1, index2=2
+	 */
 	 public int[] twoSum(int[] data, int target){
 		 int[] result = new int[2];
 		 HashMap<Integer, Integer> map = new  HashMap<Integer, Integer>();
@@ -98,6 +107,77 @@ public class Solution {
 		 
 		 return sum;
 		 }
+
+/*
+ * 	 Sort a linked list in O(n log n) time using constant space complexity.
+ */
+	 public ListNode sortList(ListNode head) {
+	      if(head == null || head.next == null)
+	    	  return head;
+	      
+	      //get the length of the liklist
+	      int count = 0;
+	      ListNode node = head;
+	      while(node!=null){
+	    	  count++;
+	    	  node = node.next;
+	      }
+	      
+	      
+	      //break up to two list
+	      int middle = count / 2;
+	      
+	      ListNode middleNode = head, rightlisthead = null;
+	      int countHalf = 1;
+	      while(countHalf < middle){
+	    	  countHalf++;
+	    	  middleNode = middleNode.next;
+	      }
+	      rightlisthead = middleNode.next;
+	      middleNode.next = null;
+		 
+	      //recursively break until it can not break
+	      ListNode left = sortList(head);
+	      ListNode right = sortList(rightlisthead);
+	      
+	      //combine and return the head of new sorted linkList
+	      return merge(left,right);
+	    }
 	 
-	 
+	 private static ListNode merge(ListNode leftlist,ListNode rightlist){
+		 
+		 ListNode head,currentNode, nextNode;
+		 
+		 if(leftlist == null)
+			 return rightlist;
+		 else if(rightlist == null)
+			 return leftlist;
+		 else if(leftlist.val <= rightlist.val){
+			 head = leftlist;
+			 currentNode = leftlist;
+			 nextNode = rightlist;
+		 } else {
+			 head = rightlist;
+			 currentNode = rightlist;
+			 nextNode = leftlist;
+		 }
+		 
+		 ListNode temp;
+		 
+		 while(nextNode !=null){
+			 if(currentNode.next == null){
+				 currentNode.next = nextNode;
+				 nextNode = null;
+			 }
+			 else if(currentNode.next.val <= nextNode.val){
+				 currentNode = currentNode.next;
+			 } else {
+				 temp = currentNode.next;
+				 currentNode.next = nextNode;
+				 nextNode = temp;
+			 }
+		 }
+		 
+		 return head;
+	 }
 }
