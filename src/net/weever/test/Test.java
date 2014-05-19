@@ -37,7 +37,11 @@ public class Test {
 		n4.next = n5;
 		n5.next = n6;
 		
-		printList(sl.sortList(n1));
+		//printList(sl.sortList(n1));
+		
+		StackTest stktest = new StackTest();
+		System.out.println("peek is: " +stktest.stk.peek());
+		stktest.testStackArray();
 	}
 	
 	public static void printList(ListNode x) {
