@@ -1,6 +1,8 @@
 package net.weever.test;
 
 import net.weever.Solution;
+import net.weever.datastructure.Queue;
+import net.weever.datastructure.QueueArray;
 import net.weever.domain.ListNode;
 
 public class Test {
@@ -42,6 +44,12 @@ public class Test {
 		StackTest stktest = new StackTest();
 		System.out.println("peek is: " +stktest.stk.peek());
 		stktest.testStackArray();
+		
+		//queue test
+		QueueArray<String> queue= new QueueArray<String>();
+		queue.enqueue("Hello").enqueue("world");
+		System.out.println(queue.dequeue()+","+queue.dequeue());
+		
 	}
 	
 	public static void printList(ListNode x) {
