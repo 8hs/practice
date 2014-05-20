@@ -180,4 +180,53 @@ public class Solution {
 		 
 		 return head;
 	 }
+	 
+	 public int trap(int[] A) {
+		 if(A.length<3) return 0;
+		 int[] maxL = new int[A.length];
+		 int[] maxR = new int[A.length];
+		 int max = A[0];
+		 maxL[0] = 0;
+		 
+		 for(int i =1;i<A.length-1;i++){
+			 maxL[i] = max;
+			 if(max<A[i]) max =A[i];
+		 }
+		 max = A[A.length-1];
+		 maxR[A.length-1] = 0;
+		 for(int i = A.length -2 ;i>0;i--){
+			 maxR[i] = max;
+			 if(A[i]>max) max= A[i];
+		 }
+		 int total = 0;
+		 for(int i = 1;i<A.length-1;i++){
+			 int volum = Math.min(maxL[i], maxR[i])-A[i];
+			 if(volum>0) total += volum;
+		 }
+		 
+		 return total;
+	 }
+	 
+	 public int firstMissingPositive(int[] A) {
+	        int len = A.length;
+	        if(len == 1 && A[0] != 1) return 1;
+	        
+	        int i = 0;
+	        while (i<len){
+	        	if(A[i] != (i+1) && A[i] >= 1 && A[i] <= len && A[A[i]-1] != A[i]){
+	        		int temp = A[i];
+	        		int index = A[i]-1;
+	        		A[i] = A[A[i]-1];
+	        		A[index] = temp;
+	        	} else {
+	        		i++;
+	        	}
+	        }
+	        
+	        for(int j = 0; j< len;j++){
+	        	if(A[j]!=j+1)
+	        		return j+1;
+	        }
+	        return len+1;
+	    }
 }

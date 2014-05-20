@@ -50,6 +50,10 @@ public class Test {
 		queue.enqueue("Hello").enqueue("world");
 		System.out.println(queue.dequeue()+","+queue.dequeue());
 		
+		//missing postive int
+		int[] uu = {2,1};
+		System.out.println(sl.firstMissingPositive(uu));
+		
 	}
 	
 	public static void printList(ListNode x) {
