@@ -1,12 +1,16 @@
 package net.weever;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Stack;
 
 import net.weever.domain.ListNode;
+import net.weever.domain.TreeNode;
 
 public class Solution {
 	/*
@@ -180,6 +184,7 @@ public class Solution {
 		 
 		 return head;
 	 }
+
 	 
 	 public int trap(int[] A) {
 		 if(A.length<3) return 0;
@@ -229,4 +234,76 @@ public class Solution {
 	        }
 	        return len+1;
 	    }
+
+/*
+ * Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum.
+ * For example:
+ * Given the below binary tree and sum = 22,
+ */
+	 public boolean hasPathSum(TreeNode root, int sum){
+		 if(root == null) return false;
+		 
+		 LinkedList<TreeNode> nodes = new LinkedList<TreeNode>();
+		 LinkedList<Integer> sumValu = new LinkedList<Integer>();
+		 
+		 nodes.add(root);
+		 sumValu.add(root.val);
+		 
+		 
+		 while(!nodes.isEmpty()){
+			 
+			 TreeNode currentNode = nodes.poll();
+			 int total = sumValu.poll();
+			 
+			 if(currentNode.left == null && currentNode.right == null && total == sum){
+				 return true;
+			 }
+			 
+			 if(currentNode.left != null){
+				 nodes.add(currentNode.left);
+				 sumValu.add(total+currentNode.left.val);
+			 }
+			 
+			 if(currentNode.right != null){
+				 nodes.add(currentNode.right);
+				 sumValu.add(total+currentNode.right.val);
+			 }
+			 
+		 }
+		 
+		 return false;
+		 
+	 }
+
+	 
+	 public String getPermutation(int n, int k) {
+	      ArrayList<Integer> ll = new ArrayList<Integer>();
+	      int mod = 1;
+	      for(int i = 1; i<=n;i++){
+	          ll.add(i);
+	          mod = mod*i;
+	      }
+	      
+	      k--;
+	      
+	      String result = "";
+	      for(int i = 0; i<n;i++){
+	    	  mod = mod / ( n- i);
+	    	  int index = k / mod;
+	    	  k = k % mod;
+	    	  result += ll.get(index);
+	    	  ll.remove(index);
+	      }
+	      
+	      return result;
+	 }
+	 /*
+	  *  Given an array with n objects colored red, white or blue, sort them so that objects of the same color are adjacent, with the colors in the order red, white and blue.
+	  *  Here, we will use the integers 0, 1, and 2 to represent the color red, white, and blue respectively. 
+	  */
+	 public void sortColors(int[] A) {
+	       
+	 }
+	    
+
 }
