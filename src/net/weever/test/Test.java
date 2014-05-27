@@ -65,6 +65,8 @@ public class Test {
 		String[] token = {"2","1","+","3","*"};
 		System.out.println(evalRPN.result(token));
 		
+		System.out.println(2^2);
+
 	}
 	
 	public static void printList(ListNode x) {

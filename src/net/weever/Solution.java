@@ -10,6 +10,7 @@ import java.util.ListIterator;
 import java.util.Stack;
 
 import net.weever.domain.ListNode;
+import net.weever.domain.RandomListNode;
 import net.weever.domain.TreeNode;
 
 public class Solution {
@@ -384,5 +385,48 @@ public class Solution {
 	    	head.next = null;
 	    	return pre;
 	    }
+/*
+ * 
+ */
+	 public RandomListNode copyRandomList(RandomListNode head) {
+		 	
+		 if(head == null) return null;
+		 
+		 HashMap<RandomListNode, RandomListNode> map = new HashMap<RandomListNode, RandomListNode>();
+	     RandomListNode newHead = new RandomListNode(head.label);
+	     
+	     map.put(head, newHead);
+	     
+	     RandomListNode original = head;
+	     RandomListNode copy = newHead;
+	     
+	     original = original.next;
+	     while(original!=null){
+	    	 
+	    	 RandomListNode temp = new RandomListNode(original.label);
+	    	 map.put(original, temp);
+	    	 copy.next = temp;
+	    	 copy = temp;
+	    	 original = original.next;
+	     }
+	     
+	     original = head;
+	     copy = newHead;
+	     
+	     while(original!=null){
+	    	 
+	    	 if(original.random != null){
+	    		 copy.random = map.get(original.random) ;
+	    	 }else{
+	    		 copy.random = null;
+	    	 }
+	    	 
+	    	 original = original.next;
+	    	 copy = copy.next;
+	     }
+        
+	        return newHead;
+	    }
 
+	 
 }
