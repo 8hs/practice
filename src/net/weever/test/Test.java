@@ -58,6 +58,8 @@ public class Test {
 
 		// permutation test
 		System.out.println(sl.getPermutation(1, 1));
+		
+		System.out.println(2^2);
 
 	}
 	
