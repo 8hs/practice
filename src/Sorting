@@ -1,0 +1,9 @@
+Time complexity of different sorting algorithms. You can go to wiki to see basic idea of them.
+Algorithm 	Average Time 	Worst Time 	Space
+Bubble sort 	n^2 	n^2 	1
+Selection sort 	n^2 	n^2 	1
+Insertion sort 	n^2 	n^2 	
+Quick sort 	n log(n) 	n^2 	
+Merge sort 	n log(n) 	n log(n) 	depends
+
+* BinSort, Radix Sort and CountSort use different set of assumptions than the rest, and so they are not "general" sorting methods. (Thanks to Fidel for pointing this out)
