@@ -1,6 +1,7 @@
 package net.weever.test;
 
 import net.weever.Solution;
+import net.weever.classic.evalRPN;
 import net.weever.datastructure.Queue;
 import net.weever.datastructure.QueueArray;
 import net.weever.domain.ListNode;
@@ -13,17 +14,17 @@ public class Test {
 	public static void main(String[] args) {
 		int[] A = {3,4,5,1,4,2};
 		int[] B = {9,9,9};
-		int[] C = {2,1};
+		int[] C = {1,2};
 		int target = 6;
 		Solution sl = new Solution();
 		//int[] result = sl.twoSum(A, target);
-		int[] result = sl.PlusOne(A);
-		for(int i=0;i<result.length;i++){
-			System.out.println(result[i]);
-		}
-		
-		String s = "the sky is blue";
-		System.out.println(sl.candy(C));
+//		int[] result = sl.PlusOne(A);
+//		for(int i=0;i<result.length;i++){
+//			System.out.println(result[i]);
+//		}
+//		
+//		String s = "the sky is blue";
+//		System.out.println(sl.candy(C));
 		
 		ListNode n1 = new ListNode(2);
 		ListNode n2 = new ListNode(3);
@@ -41,24 +42,29 @@ public class Test {
 		
 		//printList(sl.sortList(n1));
 		
-		StackTest stktest = new StackTest();
-		System.out.println("peek is: " +stktest.stk.peek());
-		stktest.testStackArray();
+//		StackTest stktest = new StackTest();
+//		System.out.println("peek is: " +stktest.stk.peek());
+//		stktest.testStackArray();
 		
 		//queue test
-		QueueArray<String> queue= new QueueArray<String>();
-		queue.enqueue("Hello").enqueue("world");
-		System.out.println(queue.dequeue()+","+queue.dequeue());
+//		QueueArray<String> queue= new QueueArray<String>();
+//		queue.enqueue("Hello").enqueue("world");
+//		System.out.println(queue.dequeue()+","+queue.dequeue());
 		
 
 		//missing postive int
-		int[] uu = {2,1};
-		System.out.println(sl.firstMissingPositive(uu));
+//		int[] uu = {2,1};
+//		System.out.println(sl.firstMissingPositive(uu));
 		
 
 		// permutation test
-		System.out.println(sl.getPermutation(1, 1));
-
+//		System.out.println(sl.getPermutation(1, 1));
+//		sl.permute(C);
+		
+		//evalRPN test
+		String[] token = {"2","1","+","3","*"};
+		System.out.println(evalRPN.result(token));
+		
 	}
 	
 	public static void printList(ListNode x) {

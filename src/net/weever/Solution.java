@@ -304,6 +304,85 @@ public class Solution {
 	 public void sortColors(int[] A) {
 	       
 	 }
+	  /* 
+	   * Given a collection of numbers, return all possible permutations.
+	   * For example,
+	   * [1,2,3] have the following permutations:
+	   * [1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], and [3,2,1].   
+	   */
+	    public ArrayList<ArrayList<Integer>> permute(int[] num) {
+	        ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+	        
+	        result.add(new ArrayList<Integer>());
+	        
+	        for (int i = 0; i < num.length; i++) {
+	            ArrayList<ArrayList<Integer>> current = new ArrayList<ArrayList<Integer>>();
+	            
+	            for(ArrayList<Integer> l : result){
+	                for(int j=0;j<l.size()+1;j++){
+	                    l.add(j,num[i]);
+	                    ArrayList<Integer> temp = new ArrayList<Integer>(l);
+	                    current.add(temp);
+	                    l.remove(j);
+	                }
+	            }
+	            result = new ArrayList<ArrayList<Integer>>(current);
+	        }
+	        return result;
+	    }
 	    
+	    /*
+	     * The problem:
+	     * Given a singly linked list L: L0→L1→ ... →Ln-1→Ln,
+	     * reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→... 
+	     * For example, given {1,2,3,4}, reorder it to {1,4,2,3}. You must do this in-place without altering the nodes' values. 
+	     */
+	    public void reorderList(ListNode head){
+	    	if(head != null && head.next != null){
+	    		ListNode slow = head;
+	    		ListNode fast = head;
+	    		
+	    		while(fast!=null && fast.next!=null&&fast.next.next!=null){
+	    			slow = slow.next;
+	    			fast=fast.next.next;
+	    		}
+	    		
+	    		ListNode second = slow.next;
+	    		slow.next = null;
+	    		
+	    		second = reverseOrder(second);
+	    		
+	    		ListNode list1 = head;
+	    		ListNode list2 = second;
+	    		
+	    		while(list2!=null){
+	    			ListNode temp1 = list1.next;
+	    			ListNode temp2 = list2.next;
+	    			
+	    			list1.next = list2;
+	    			list2.next = temp1;
+	    			
+	    			list1 = temp1;
+	    			list2 = temp2;
+	    		}
+	    	}
+	    }
+	    
+	    private static ListNode reverseOrder(ListNode head){
+	    	if(head == null || head.next ==null) return head;
+	    	
+	    	ListNode pre = head;
+	    	ListNode current = head.next;
+	    	
+	    	while(current!=null){
+	    		ListNode temp = current.next;
+	    		current.next = pre;
+	    		pre = current;
+	    		current = temp;
+	    	}
+	    	
+	    	head.next = null;
+	    	return pre;
+	    }
 
 }
