@@ -1,5 +1,6 @@
 package net.weever;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -9,9 +10,12 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Stack;
 
+import com.sun.jmx.remote.internal.ArrayQueue;
 import net.weever.domain.ListNode;
 import net.weever.domain.RandomListNode;
 import net.weever.domain.TreeNode;
+
+import javax.print.DocFlavor;
 
 public class Solution {
 	/*
@@ -428,5 +432,47 @@ public class Solution {
 	        return newHead;
 	    }
 
+    /**
+     * Reverse a integer
+     * 123 -> 321  -123->321
+     */
+
+    public int reserve(int x){
+        int newNum = 0, left =0;
+        while(x!=0){
+            left = x%10;
+            newNum = newNum*10+left;
+            x = x/10;
+        }
+        return newNum;
+    }
+
+    /**
+     *     Letter Combinations of a Phone Number
+     */
+    // form 0-9
+    public String[] board = {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+    public List<String> letterCombinations(String digits) {
+        List<String> results = new ArrayList<String>();
+        StringBuffer letter = new StringBuffer();
+        appendDigits(digits,0,results,letter);
+        return results;
+    }
+
+    private void appendDigits(String digits,int digitIndex,List<String> list,StringBuffer letter){
+        if(digitIndex == digits.length()){
+            list.add(letter.toString());
+            return;
+        }
+        int index= digits.charAt(digitIndex)-48;
+        String buttonString = board[index];
+        System.out.println(buttonString);
+
+        for(int i=0;i<buttonString.length();i++){
+            letter.append(buttonString.charAt(i));
+            appendDigits(digits,digitIndex+1,list,letter);
+        }
+
+    }
 	 
 }

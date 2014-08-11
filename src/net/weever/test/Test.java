@@ -6,6 +6,8 @@ import net.weever.datastructure.Queue;
 import net.weever.datastructure.QueueArray;
 import net.weever.domain.ListNode;
 
+import java.util.List;
+
 public class Test {
 
 	/**
@@ -63,9 +65,15 @@ public class Test {
 		
 		//evalRPN test
 		String[] token = {"2","1","+","3","*"};
-		System.out.println(evalRPN.result(token));
+//		System.out.println(evalRPN.result(token));
 		
-		System.out.println(2^2);
+
+
+        //reserve int
+        //System.out.println(sl.reserve(-900));
+
+        //LetterCombination
+        List<String> list = sl.letterCombinations("2");
 
 	}
 	
