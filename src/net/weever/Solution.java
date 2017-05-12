@@ -1,23 +1,54 @@
 package net.weever;
 
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.Stack;
-
-import com.sun.jmx.remote.internal.ArrayQueue;
 import net.weever.domain.ListNode;
 import net.weever.domain.RandomListNode;
 import net.weever.domain.TreeNode;
 
-import javax.print.DocFlavor;
-
 public class Solution {
+
+
+	/**
+	 * Definition for singly-linked list.
+	 * public class ListNode {
+	 *     int val;
+	 *     ListNode next;
+	 *     ListNode(int x) { val = x; }
+	 * }
+	 */
+
+		public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+			if(l1 == null)
+				return l2;
+			if(l2 == null)
+				return l1;
+
+			ListNode head = new ListNode();
+			ListNode last = head;
+
+			while(l1 != null && l2 !=null ){
+				if(l1.val < l2.val) {
+					last.next = l1;
+					l1 = l1.next;
+				}
+				head.next = l2;
+				l2 = l2.next;
+				last = last.next;
+			} while (l1.next !=null && l2.next !=null);
+
+			if(l1 != null)
+				last.next = l1;
+			if(l2 != null)
+				last.next = l2;
+
+			return head.next;
+	}
+
 	/*
 	Given an array of integers, find two numbers such that they add up to a specific target number.
 	The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.
