@@ -12,7 +12,6 @@ import net.weever.domain.TreeNode;
 
 public class Solution {
 
-
 	/**
 	 * Definition for singly-linked list.
 	 * public class ListNode {
