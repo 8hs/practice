@@ -14,4 +14,15 @@ public class BitSolution {
     return count;
   }
 
+  //371. Sum of Two Integers
+  public int getSum(int a, int b) {
+    if(b == 0)
+      return a;
+    int carry = a&b;
+    a = a^b;
+    b = carry << 1;
+    return getSum(a, b);
+  }
+
+
 }
