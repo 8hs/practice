@@ -25,4 +25,21 @@ public class BitSolution {
   }
 
 
+  /*
+  190. Reverse Bits
+  For example, given input 43261596 (represented in binary as 00000010100101000001111010011100),
+  return 964176192 (represented in binary as 00111001011110000010100101000000).
+   */
+  // you need treat n as an unsigned value
+  public int reverseBits(int n) {
+    int m = 0;
+    for(int i= 0; i<32; i++){
+      m += n & 1;
+      n >>>=1;
+      if(i < 31)
+        m <<= 1;
+    }
+    return m;
+  }
+
 }

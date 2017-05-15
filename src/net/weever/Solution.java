@@ -9,6 +9,7 @@ import java.util.ListIterator;
 import net.weever.domain.ListNode;
 import net.weever.domain.RandomListNode;
 import net.weever.domain.TreeNode;
+import org.junit.jupiter.api.Test;
 
 public class Solution {
 
@@ -20,7 +21,6 @@ public class Solution {
 	 *     ListNode(int x) { val = x; }
 	 * }
 	 */
-
 		public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
 			if(l1 == null)
 				return l2;

@@ -65,4 +65,21 @@ public class StringSolution {
     }
     return new String(ss);
   }
+
+  /**
+   *   520. Detect Capital
+   *   1 . All capital
+   *   2. all lower case
+   *   3. only first capital
+   */
+  public boolean detectCapitalUse(String word) {
+    return word.matches("[A-Z]+|[a-z]+|[A-Z][a-z]+");
+  }
+
+  /**
+   * 189. Rotate Array
+   * Rotate an array of n elements to the right by k steps.
+   * For example, with n = 7 and k = 3, the array [1,2,3,4,5,6,7] is rotated to [5,6,7,1,2,3,4].
+   */
+
 }
