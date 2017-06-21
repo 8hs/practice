@@ -30,7 +30,43 @@ public class MathSolution {
   public static void main(String[] args){
     long start = System.currentTimeMillis();
     System.out.println(new MathSolution().checkPerfectNumber(28));
+    System.out.println(new MathSolution().divide(-2147483648, -1));
     System.out.println("Response time: " + (System.currentTimeMillis() - start));
+  }
+
+
+  public int divide(int dividend, int divisor) {
+    int sign = 1;
+    if ((dividend < 0 && divisor > 0) || (dividend > 0 && divisor < 0))
+      sign = -1;
+    if (divisor == 0) return Integer.MAX_VALUE;
+
+
+    long up = Math.abs((long) dividend);
+    long down = Math.abs((long) divisor);
+
+    if (up < down) return 0;
+
+    long ans = dividehelper(up, down);
+
+    if (ans > Integer.MAX_VALUE) {
+      return sign == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+
+    }
+    return (int) (sign * ans);
+  }
+
+  public long dividehelper(long up, long down){
+    if(up < down)
+      return 0;
+    long sum = down;
+    long multi = 1;
+    while((sum+sum) <= up){
+      sum +=sum;
+      multi+=multi;
+    }
+
+    return multi + dividehelper(up - sum, down);
   }
 
 }

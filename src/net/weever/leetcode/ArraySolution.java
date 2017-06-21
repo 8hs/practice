@@ -42,4 +42,33 @@ public class ArraySolution {
     567 4321 -> 567 1234
      */
   }
+
+  public void nextPermutation(int[] nums) {
+    if(nums == null || nums.length == 1) return;
+    int index = nums.length - 1;
+    while(nums[index] < nums[index-1] && index > 0)
+      index--;
+    if(index == 0){
+      reverseArray(nums,0,nums.length-1);
+      return;
+    }
+    int val = nums[index-1];
+    int j = nums.length - 1;
+    while(val > nums[j]) j--;
+    nums[index-1] = nums[j];
+    nums[j] = val;
+    reverseArray(nums, index, nums.length-1);
+  }
+
+  public void reverseArray(int[] nums, int start, int end){
+    while(start > end){
+      int t = nums[start];
+      nums[start++] = nums[end];
+      nums[end--] = t;
+    }
+  }
+
+  public static void main(String[] args){
+    new ArraySolution().nextPermutation(new int[]{7,8,3,5,4,2});
+  }
 }
