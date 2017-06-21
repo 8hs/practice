@@ -1,10 +1,5 @@
 package net.weever.leetcode;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 public class StringSolution {
 
   //383. Ransom Note
@@ -82,4 +77,27 @@ public class StringSolution {
    * For example, with n = 7 and k = 3, the array [1,2,3,4,5,6,7] is rotated to [5,6,7,1,2,3,4].
    */
 
+
+
+  public boolean isSubsequence(String s, String t) {
+    if( s == null || s == "")
+      return true;
+    if( t == null || t.length() < s.length())
+      return false;
+    char[] ss = s.toCharArray();
+    int step = 0;
+    for(char c : t.toCharArray()){
+      if(c == ss[step])
+        step++;
+      if(step == ss.length)
+        return true;
+    }
+    return false;
+  }
+
+  public static void main(String[] args){
+    long start = System.currentTimeMillis();
+    System.out.println(new StringSolution().isSubsequence("", "sghssjh"));
+    System.out.println("Response time: " + (System.currentTimeMillis() - start));
+  }
 }
