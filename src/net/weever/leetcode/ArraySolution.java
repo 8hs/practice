@@ -7,6 +7,11 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class ArraySolution {
 
   //561. Array Partition I
@@ -73,6 +78,33 @@ public class ArraySolution {
       nums[start++] = nums[end];
       nums[end--] = t;
     }
+  }
+
+  public int[] intersect(int[] nums1, int[] nums2) {
+    Map<Integer, Integer> map = new HashMap<>();
+    List<Integer> result = new ArrayList<>();
+
+    for(Integer num:nums1){
+      if(map.containsKey(num))
+        map.put(num,map.get(num)+1);
+      else
+        map.put(num,1);
+    }
+
+    for(Integer num:nums2){
+      if(map.containsKey(num) && map.get(num) >0){
+        result.add(num);
+        map.put(num,map.get(num) -1);
+      }
+
+    }
+
+    int[] r = new int[result.size()];
+    int index = 0;
+    for(Integer i : result)
+      r[index++] = i;
+
+    return r;
   }
 
 
