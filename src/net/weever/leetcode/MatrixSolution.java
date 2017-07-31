@@ -1,10 +1,10 @@
 package net.weever.leetcode;
 
-import com.sun.tools.hat.internal.util.Comparer;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+
 import net.weever.datastructure.Interval;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by localadmin on 6/18/17.
