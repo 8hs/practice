@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ArraySolution {
 
@@ -98,6 +100,33 @@ public class ArraySolution {
       r[index++] = i;
 
     return r;
+  }
+
+
+  //49 Group Anagrams
+  public List<List<String>> groupAnagrams(String[] strs) {
+    List<List<String>> result = new ArrayList<>();
+    if(strs == null || strs.length == 0)
+      return result;
+    Map<String,List<String>> map = new HashMap<>();
+    for(String s : strs){
+      String sorted =
+              Stream.of(s.split(""))
+                      .sorted()
+                      .collect(Collectors.joining());
+      if(map.containsKey(sorted)){
+        map.get(sorted).add(s);
+      } else {
+        List<String> list = new ArrayList<>();
+        list.add(s);
+        map.put(sorted, list);
+      }
+    }
+
+    for(Map.Entry<String, List<String>> entry : map.entrySet()){
+      result.add(entry.getValue());
+    }
+    return result;
   }
 
   public static void main(String[] args){

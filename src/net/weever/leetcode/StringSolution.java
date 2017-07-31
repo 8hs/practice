@@ -1,5 +1,8 @@
 package net.weever.leetcode;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StringSolution {
 
   //383. Ransom Note
@@ -95,8 +98,30 @@ public class StringSolution {
     return false;
   }
 
+  public List<Integer> findAnagrams(String s, String p) {
+    List<Integer> result = new ArrayList<>();
+    if(s == null || p == null || p.length() > s.length())
+      return result;
+    int[] chars = new int[26];
+    for(char c : p.toCharArray())
+      chars[c-'a']++;
+    int start = 0, end = 0, count = p.length();
+    while(end < s.length()){
+      if(chars[s.charAt(end++)-'a']-- > 0){
+        count--;
+      }
+      if(count == 0)
+        result.add(start);
+      if(end - start == p.length() && chars[s.charAt(start++)-'a']++ >= 0){
+        count++;
+      }
+    }
+    return result;
+  }
+
   public static void main(String[] args){
     long start = System.currentTimeMillis();
+    new StringSolution().findAnagrams("cbaebabacd","abc");
     System.out.println(new StringSolution().isSubsequence("", "sghssjh"));
     System.out.println("Response time: " + (System.currentTimeMillis() - start));
   }
