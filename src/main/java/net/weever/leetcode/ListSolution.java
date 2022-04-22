@@ -40,13 +40,13 @@ public class ListSolution {
     //backtracking recursive + iterator
     public List<List<Integer>> combine(int n, int k) {
         List<List<Integer>> combs = new ArrayList<List<Integer>>();
-        combine(combs, new ArrayList<Integer>(), 1, n, k);
+        combine(combs, new ArrayList<>(), 1, n, k);
         return combs;
     }
 
     public static void combine(List<List<Integer>> combs, List<Integer> comb, int start, int n, int k){
         if(k == 0){
-            combs.add(new ArrayList<Integer>(comb));
+            combs.add(new ArrayList<>(comb));
             return;
         }
         for(int i=start;i<=n;i++){
@@ -55,6 +55,25 @@ public class ListSolution {
             comb.remove(comb.size()-1);
         }
         // 1,2
+    }
+
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        int carry = 0;
+        ListNode head = new ListNode(0);
+        ListNode pointer = head;
+        while(l1 != null || l2 !=null || carry == 1) {
+            int i = (l1 != null ? l1.val : 0);
+            int j = (l2 != null ? l2.val : 0);
+            int value = (i+j+carry)%10;
+            carry = (i+j+carry)/10;
+            pointer.next = new ListNode(value);
+            pointer = pointer.next;
+            if(l1 != null)
+                l1 = l1.next;
+            if(l2 != null)
+                l2 = l2.next;
+        }
+        return head.next;
     }
 
     public static void main(String[] argus){

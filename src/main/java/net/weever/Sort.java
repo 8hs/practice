@@ -1,10 +1,6 @@
 package net.weever;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 public class Sort {
 
@@ -29,4 +25,18 @@ public class Sort {
 		}
 	}
 
+	public void func() {
+		Queue<Integer> queue = new PriorityQueue<>(10, new CustomComparator());
+		Stack<String> stack = new Stack<>();
+		stack.push("");
+		stack.push("");
+		boolean isEmpty = stack.empty();
+	}
+}
+
+class CustomComparator implements Comparator<Integer> {
+	@Override
+	public int compare(Integer o1, Integer o2) {
+		return o1 - o2;
+	}
 }

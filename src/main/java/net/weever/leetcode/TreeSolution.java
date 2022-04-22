@@ -15,23 +15,23 @@ public class TreeSolution {
     //199. Binary Tree Right Side View
     public List<Integer> rightSideView(TreeNode root) {
         List<Integer> result = new ArrayList<>();
-        if(root == null) return result;
+        if (root == null) return result;
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
-        while(!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             result.add(queue.peek().val);
             Queue<TreeNode> temp = new LinkedList<>();
-            while(!queue.isEmpty()){
+            while (!queue.isEmpty()) {
                 TreeNode node = queue.poll();
-                if(node.right != null)
+                if (node.right != null)
                     temp.add(node.right);
-                if(node.left != null)
+                if (node.left != null)
                     temp.add(node.left);
             }
             queue = temp;
- * Created by weever on 7/4/2017.
- */
-public class TreeSolution {
+        }
+        return result;
+    }
 
     public List<List<Integer>> levelOrderBottom(TreeNode root) {
         List<List<Integer>> result = new ArrayList<>();

@@ -1,11 +1,7 @@
 package net.weever;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
+
 import net.weever.domain.ListNode;
 import net.weever.domain.RandomListNode;
 import net.weever.domain.TreeNode;
@@ -88,6 +84,7 @@ public class Solution {
 			 return result;
 		 }
 	 }
+
 /* 
  * Given an input string, reverse the string word by word.
  * For example,
@@ -488,11 +485,12 @@ public class Solution {
         return results;
     }
 
-    private void appendDigits(String digits,int digitIndex,List<String> list,StringBuffer letter){
+    private void appendDigits(String digits,int digitIndex,List<String> list, StringBuffer letter){
         if(digitIndex == digits.length()){
             list.add(letter.toString());
             return;
         }
+
         int index= digits.charAt(digitIndex)-48;
         String buttonString = board[index];
         System.out.println(buttonString);
@@ -503,5 +501,162 @@ public class Solution {
         }
 
     }
-	 
+
+	public int countNicePairs(int[] nums) {
+		if (nums == null || nums.length <= 1)
+			return 0;
+		Map<Integer, Integer> map = new HashMap<>();
+		for (int num : nums) {
+			int diff = num - rev(num);
+			if (map.get(diff) != null) {
+				map.put(diff, map.get(diff)+1);
+			} else {
+				map.put(diff, 1);
+			}
+		}
+
+		int sum = 0;
+		for (int count: map.values()) {
+			if (count >= 2) {
+				sum += count*(count-1)/2;
+			}
+		}
+		return sum;
+
+	}
+
+	public int rev(int x) {
+		int sum = 0;
+		while (x>0) {
+			sum = sum * 10;
+			sum = sum + x%10;
+			x = x/10;
+		}
+		return sum;
+	}
+
+	public int numIslands(char[][] grid) {
+		if (grid == null || grid.length == 0 || grid[0].length == 0)
+			return 0;
+		int result = 0;
+		for (int row=0; row<grid.length; row++) {
+			for (int column=0; column<grid[0].length; column++) {
+				if (grid[row][column] == '1') {
+					result++;
+					detectNeighbor(grid, row, column);
+				}
+			}
+		}
+		return result;
+	}
+
+	private void detectNeighbor(char[][] grid, int row, int column) {
+		if (grid[row][column] == '1') {
+			grid[row][column] = '0';
+			if (row > 0) {
+				detectNeighbor(grid, row-1, column);
+			}
+			if (column > 0) {
+				detectNeighbor(grid, row, column-1);
+			}
+			if (row < grid.length-1) {
+				detectNeighbor(grid, row+1, column);
+			}
+			if (column < grid[0].length-1) {
+				detectNeighbor(grid, row, column+1);
+			}
+		}
+	}
+
+
+	/**
+	 * 56. Merge Intervals
+	 * @param intervals
+	 * @return
+	 */
+	public int[][] mergeInterval(int[][] intervals) {
+		if (intervals == null || intervals.length <=1)
+			return intervals;
+
+		Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+
+		List<int[]> list = new ArrayList<>();
+		int start = intervals[0][0];
+		int end = intervals[0][1];
+
+		for (int row=0; row < intervals.length; row++) {
+			if (intervals[row][0] > end) {
+				int[] pair = new int[2];
+				pair[0] = start;
+				pair[1] = end;
+				list.add(pair);
+				start = intervals[row][0];
+				end = intervals[row][1];
+			} else if (intervals[row][1] > end){
+				end = intervals[row][1];
+			}
+		}
+
+		int[][] res = new int[list.size()+1][2];
+		for (int index=0; index<list.size(); index++) {
+			res[index] = list.get(index);
+		}
+		res[list.size()] = new int[]{start, end};
+		return res;
+	}
+
+	public int[][] kClosest(int[][] points, int k) {
+		Arrays.sort(points, (a, b) -> {
+			double _a = Math.sqrt(a[0] * a[0] + a[1] * a[1]);
+			double _b = Math.sqrt(b[0] * b[0] + b[1] * b[1]);
+			return Double.compare(_a, _b);
+		});
+		return new int[][]{};
+	}
+
+	public boolean searchMatrix(int[][] matrix, int target) {
+		if(matrix == null || matrix.length == 0)
+			return false;
+		int rows = matrix.length;
+		int columns = matrix[0].length;
+		int row_index = 0;
+		for (int i=0; i< matrix.length;) {
+			if (target > matrix[i][columns-1]) {
+				i++;
+			} else {
+				break;
+			}
+			row_index = i;
+		}
+		if (row_index < rows) {
+			for (int j=0; j< matrix[0].length; j++) {
+				if (matrix[row_index][j] == target)
+					return true;
+			}
+		}
+		return false;
+	}
+
+
+	public static void detectPhoneNumbers(String txt) {
+		if (txt == null || txt.length() < 9)
+			return;
+		String[] arr = txt.split(" ");
+		// ^\\d{3}-\\d{3}-\\d{4}$
+		// ^\\d{3}-\\d73}$
+		List<String> numbers = new ArrayList<>();
+		for (String s: arr) {
+			s.replace("\n", "");
+			if(s.trim().matches("^[0-9]{3}-[0-9]{3}-[0-9]{4}$") || s.trim().matches("^[0-9]{3}-[0-9]{7}$")) {
+				numbers.add(s.trim());
+				System.out.println(s.trim());
+			}
+		}
+	}
+
+	private static void printPretty(String number) {
+		number = number.replace("-", "");
+		String output = number.substring(0,3) + "-" + number.substring(3,6) + "-" + number.substring(6, 10);
+		System.out.println(output);
+	}
 }
