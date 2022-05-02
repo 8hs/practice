@@ -1,4 +1,4 @@
-import net.weever.interview.WayFair;
+import net.weever.interview.Karat;
 import org.junit.Test;
 
 import java.time.Instant;
@@ -6,7 +6,7 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-public class WayfairTest {
+public class KaratTest {
 
     char[][] grid1 = {
             {'c', 'c', 'x', 't', 'i', 'b'},
@@ -31,8 +31,7 @@ public class WayfairTest {
 
     @Test
     public void test() {
-        // List<int[]> res = new WayFair().find(grid1, word1);
-
+        List<int[]> res = new Karat().find(grid1, word1);
 
         Instant time = Instant.parse("2020-03-31T08:00:00Z");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");

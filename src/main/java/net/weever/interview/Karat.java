@@ -49,7 +49,7 @@ w = length of the word
 import java.util.ArrayList;
 import java.util.List;
 
-public class WayFair {
+public class Karat {
 
     public static List<int[]> find(char[][] input, String word) {
         if (input == null || word == null || word.length() == 0) {

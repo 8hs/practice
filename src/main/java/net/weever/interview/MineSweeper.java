@@ -5,9 +5,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Coupa {
+public class MineSweeper {
 
-    public void mineSweeper(int m, int n, int x) {
+    public void game(int m, int n, int x) {
         int[] init = new int[m*n];
         for (int i=0; i< x; i++) {
             init[i] = -1;

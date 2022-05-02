@@ -5,11 +5,6 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
-public class Thumbtack {
-
-}
-
-
 class DoubleSourceIterator {
 
     Iterator<Integer> sourceA;

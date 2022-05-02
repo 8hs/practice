@@ -27,13 +27,13 @@ public class BinaryTreeTest {
 		System.out.println("max:"+bst.Maximum(root));
 		
 		// inorder
-		System.out.println("\ninorder:");
+		System.out.println("inorder:");
 		PrinterOrder(bst.inorderTraversal(root));
 		// postorder
-		System.out.println("\npostorder:");
+		System.out.println("postorder:");
 		PrinterOrder(bst.postorderTraversal(root));
 		
-		System.out.println("\npreorder2:");
+		System.out.println("preorder2:");
 		PrinterOrder(bst.preorderTraversal(root));
 	}
 	
